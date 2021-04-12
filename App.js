@@ -1,19 +1,36 @@
 import React from "react";
+import { Alert } from "react-native";
 import * as Location from "expo-location";
 
 import Loading from "./Loading";
 
 export default class extends React.Component {
-  getLocation = async () => {
-    const permission = await Location.requestPermissionsAsync();
-    const location = await Location.getCurrentPositionAsync();
-    console.log(location);
+  state = {
+    isLoading: true,
   };
+
+  getLocation = async () => {
+    try {
+      await Location.requestPermissionsAsync();
+      const {
+        coords: { latitude, longitude },
+      } = await Location.getCurrentPositionAsync();
+      this.setState({ isLoading: false });
+      // Send to API and get weather
+    } catch (error) {
+      Alert.alert(
+        "Can't find you!",
+        "Turn on your location to get the weather :)"
+      );
+    }
+  };
+
   componentDidMount() {
     this.getLocation();
   }
 
   render() {
-    return <Loading />;
+    const { isLoading } = this.state;
+    return isLoading ? <Loading /> : null;
   }
 }
