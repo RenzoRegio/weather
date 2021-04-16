@@ -1,7 +1,10 @@
 import React from "react";
 import { Alert } from "react-native";
 import * as Location from "expo-location";
+
+// Components
 import Loading from "./Loading";
+import Weather from "./Weather";
 
 const API_KEY = "7d78bcfc6d1b8624d91e6d7756dd4f5c";
 
@@ -45,6 +48,10 @@ export default class extends React.Component {
 
   render() {
     const { isLoading, temperature, location } = this.state;
-    return isLoading ? <Loading /> : null;
+    return isLoading ? (
+      <Loading />
+    ) : (
+      <Weather location={location} temperature={temperature} />
+    );
   }
 }
