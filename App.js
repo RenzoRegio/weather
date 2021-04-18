@@ -26,7 +26,7 @@ export default class extends React.Component {
       //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       // )
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=montreal&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=halifax&appid=${API_KEY}`
       )
         .then(function (response) {
           return response.json();
@@ -53,7 +53,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { isLoading, temperature, location, condition } = this.state;
+    const { isLoading, temperature, location, condition, icon } = this.state;
     return isLoading ? (
       <Loading />
     ) : (
