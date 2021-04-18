@@ -1,25 +1,35 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default ({ location, temperature, condition }) => {
   let weatherCondition;
+  let gradientColors = [];
 
-  if (condition === "clear sky") {
+  if (condition.toLowerCase() === "clear") {
     weatherCondition = styles.clear;
+    gradientColors = ["#b7eaff", "#67d1fb"];
+  } else if (condition.toLowerCase() === "clouds") {
+    weatherCondition = styles.clouds;
+    gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
   }
 
   return (
-    <View style={weatherCondition}>
+    <LinearGradient colors={gradientColors} style={weatherCondition}>
       <Text style={styles.condition}>{condition}</Text>
       <Text style={styles.temperature}>{temperature}°C</Text>
       <Text style={styles.location}>{location} City</Text>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   clear: {
-    backgroundColor: "#94dfff",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  clouds: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
