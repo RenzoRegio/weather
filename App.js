@@ -14,6 +14,7 @@ export default class extends React.Component {
     location: "",
     temperature: 0,
     condition: "",
+    icon: "",
   };
 
   getLocation = async () => {
@@ -22,22 +23,22 @@ export default class extends React.Component {
       const {
         coords: { latitude, longitude },
       } = await Location.getCurrentPositionAsync();
-      // fetch(
-      //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-      // )
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=halifax&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       )
+        // fetch(
+        //   `https://api.openweathermap.org/data/2.5/weather?q=halifax&appid=${API_KEY}`
+        // )
         .then(function (response) {
           return response.json();
         })
         .then((json) => {
-          console.log(json);
           this.setState({
             temperature: json.main.temp,
             location: json.name,
             isLoading: false,
             condition: json.weather[0].main,
+            icon: json.weather[0].icon,
           });
         });
     } catch (error) {
@@ -61,6 +62,7 @@ export default class extends React.Component {
         location={location}
         temperature={temperature}
         condition={condition}
+        icon={icon}
       />
     );
   }

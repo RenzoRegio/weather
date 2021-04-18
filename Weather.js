@@ -1,9 +1,11 @@
 import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { Image } from "react-native-elements";
 
 export default ({ location, temperature, condition, icon }) => {
   let gradientColors = [];
+  const image = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
   if (condition.toLowerCase() === "clear") {
     gradientColors = ["#b7eaff", "#67d1fb"];
@@ -16,6 +18,7 @@ export default ({ location, temperature, condition, icon }) => {
   return (
     <LinearGradient colors={gradientColors} style={styles.container}>
       <Text style={styles.condition}>{condition}</Text>
+      <Image style={{ width: 200, height: 200 }} source={{ uri: image }} />
       <Text style={styles.temperature}>{temperature}°C</Text>
       <Text style={styles.location}>{location} City</Text>
     </LinearGradient>
