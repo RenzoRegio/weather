@@ -6,13 +6,16 @@ import { Image } from "react-native-elements";
 export default ({ location, temperature, condition, icon }) => {
   let gradientColors = [];
   const image = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  const currentCondition = condition.toLowerCase();
 
-  if (condition.toLowerCase() === "clear") {
+  if (currentCondition === "clear") {
     gradientColors = ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"];
-  } else if (condition.toLowerCase() === "clouds") {
+  } else if (currentCondition === "clouds") {
     gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
-  } else if (condition.toLowerCase() === "rain") {
+  } else if (currentCondition === "rain") {
     gradientColors = ["#00B9D3", "#57C7DB", "#90D6E2", "#B8E3EA", "#CAECF1"];
+  } else if (currentCondition === "haze") {
+    gradientColors = ["purple", "black"];
   }
 
   return (
