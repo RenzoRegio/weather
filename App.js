@@ -1,6 +1,7 @@
 import React from "react";
 import { Alert } from "react-native";
 import * as Location from "expo-location";
+import axios from "axios";
 
 // Components
 import Loading from "./Loading";
@@ -17,31 +18,35 @@ export default class extends React.Component {
     icon: "",
   };
 
+  getWeather = async (lat, long) => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
+      )
+      // axios
+      //   .get(
+      //     `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
+      //   )
+      .then((response) => {
+        const data = response.data;
+        const weather = data.weather[0];
+        this.setState({
+          condition: weather.main,
+          icon: weather.icon,
+          temperature: data.main.temp,
+          location: data.name,
+          isLoading: false,
+        });
+      });
+  };
+
   getLocation = async () => {
     try {
       await Location.requestPermissionsAsync();
       const {
         coords: { latitude, longitude },
       } = await Location.getCurrentPositionAsync();
-      // fetch(
-      //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-      // )
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then((json) => {
-          console.log(json);
-          this.setState({
-            temperature: json.main.temp,
-            location: json.name,
-            isLoading: false,
-            condition: json.weather[0].main,
-            icon: json.weather[0].icon,
-          });
-        });
+      await this.getWeather(latitude, longitude);
     } catch (error) {
       Alert.alert(
         "Can't find you!",
