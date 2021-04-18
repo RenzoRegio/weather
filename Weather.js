@@ -12,7 +12,7 @@ export default ({ location, temperature, condition, icon }) => {
   } else if (condition.toLowerCase() === "clouds") {
     gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
   } else if (condition.toLowerCase() === "rain") {
-    gradientColors = ["#57c1eb", "#246fa8"];
+    gradientColors = ["#00B9D3", "#57C7DB", "#90D6E2", "#B8E3EA", "#CAECF1"];
   }
 
   return (

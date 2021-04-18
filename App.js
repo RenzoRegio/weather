@@ -27,12 +27,13 @@ export default class extends React.Component {
       //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       // )
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=madrid&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
       )
         .then(function (response) {
           return response.json();
         })
         .then((json) => {
+          console.log(json);
           this.setState({
             temperature: json.main.temp,
             location: json.name,
