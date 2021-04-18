@@ -23,12 +23,12 @@ export default class extends React.Component {
       const {
         coords: { latitude, longitude },
       } = await Location.getCurrentPositionAsync();
+      // fetch(
+      //   `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+      // )
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=madrid&appid=${API_KEY}`
       )
-        // fetch(
-        //   `https://api.openweathermap.org/data/2.5/weather?q=halifax&appid=${API_KEY}`
-        // )
         .then(function (response) {
           return response.json();
         })

@@ -8,7 +8,7 @@ export default ({ location, temperature, condition, icon }) => {
   const image = `http://openweathermap.org/img/wn/${icon}@2x.png`;
 
   if (condition.toLowerCase() === "clear") {
-    gradientColors = ["#b7eaff", "#67d1fb"];
+    gradientColors = ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"];
   } else if (condition.toLowerCase() === "clouds") {
     gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
   } else if (condition.toLowerCase() === "rain") {
@@ -20,7 +20,7 @@ export default ({ location, temperature, condition, icon }) => {
       <Text style={styles.condition}>{condition}</Text>
       <Image style={{ width: 200, height: 200 }} source={{ uri: image }} />
       <Text style={styles.temperature}>{temperature}°C</Text>
-      <Text style={styles.location}>{location} City</Text>
+      <Text style={styles.location}>{location}</Text>
     </LinearGradient>
   );
 };
