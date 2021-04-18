@@ -13,6 +13,7 @@ export default class extends React.Component {
     isLoading: true,
     location: "",
     temperature: 0,
+    condition: "",
   };
 
   getLocation = async () => {
@@ -28,10 +29,12 @@ export default class extends React.Component {
           return response.json();
         })
         .then((json) => {
+          console.log(json);
           this.setState({
             temperature: json.main.temp,
             location: json.name,
             isLoading: false,
+            condition: json.weather[0].description,
           });
         });
     } catch (error) {
@@ -47,11 +50,15 @@ export default class extends React.Component {
   }
 
   render() {
-    const { isLoading, temperature, location } = this.state;
+    const { isLoading, temperature, location, condition } = this.state;
     return isLoading ? (
       <Loading />
     ) : (
-      <Weather location={location} temperature={temperature} />
+      <Weather
+        location={location}
+        temperature={temperature}
+        condition={condition}
+      />
     );
   }
 }
