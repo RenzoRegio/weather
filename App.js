@@ -15,29 +15,22 @@ export default class extends React.Component {
     location: "",
     temperature: 0,
     condition: "",
-    icon: "",
   };
 
   getWeather = async (lat, long) => {
-    axios
-      .get(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
-      )
-      // axios
-      //   .get(
-      //     `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
-      //   )
-      .then((response) => {
-        const data = response.data;
-        const weather = data.weather[0];
-        this.setState({
-          condition: weather.main,
-          icon: weather.icon,
-          temperature: data.main.temp,
-          location: data.name,
-          isLoading: false,
-        });
-      });
+    // const { data } = await axios.get(
+    //   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
+    // )
+    const { data } = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
+    );
+    console.log(data);
+    this.setState({
+      isLoading: false,
+      temperature: Math.floor(data.main.temp),
+      condition: data.weather[0].main,
+      location: data.name,
+    });
   };
 
   getLocation = async () => {
@@ -60,7 +53,7 @@ export default class extends React.Component {
   }
 
   render() {
-    const { isLoading, temperature, location, condition, icon } = this.state;
+    const { isLoading, temperature, location, condition } = this.state;
     return isLoading ? (
       <Loading />
     ) : (
@@ -68,7 +61,6 @@ export default class extends React.Component {
         location={location}
         temperature={temperature}
         condition={condition}
-        icon={icon}
       />
     );
   }
