@@ -27,11 +27,11 @@ export default ({ location, temperature, condition }) => {
     },
     Drizzle: {
       icon: "weather-partly-rainy",
-      gradient: ["#0F2027", "#203A43", "#2C5364"],
+      gradient: ["#89F7FE", "#66A6FF"],
     },
     Thunderstorm: {
       icon: "weather-lightning",
-      gradient: ["#000000", "#F9D423"],
+      gradient: ["#0F2027", "#203A43", "#2C5364"],
     },
     Fog: {
       icon: "weather-fog",
@@ -45,17 +45,25 @@ export default ({ location, temperature, condition }) => {
       icon: "weather-tornado",
       gradient: ["#bdc3c7", "#2c3e50"],
     },
+    Dust: {
+      icon: "weather-fog",
+      gradient: ["#4DA0B0", "#D39D38"],
+    },
+    Atmosphere: {
+      icon: "weather-cloudy",
+      gradient: ["#89F7FE", "#66A6FF"],
+    },
   };
 
   return (
     <LinearGradient
-      colors={weatherCondition["Thunderstorm"].gradient}
+      colors={weatherCondition[condition].gradient}
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
       <Text style={styles.condition}>{condition}</Text>
       <MaterialCommunityIcons
-        name={weatherCondition["Thunderstorm"].icon}
+        name={weatherCondition[condition].icon}
         size={200}
         color="white"
       />

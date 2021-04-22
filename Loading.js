@@ -4,9 +4,9 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default () => {
   return (
-    <LinearGradient colors={["#82addb", "#ebb2b1"]} style={styles.container}>
+    <LinearGradient colors={["#283048", "#859398"]} style={styles.container}>
       <StatusBar barStyle="light-content" />
-      <Text style={styles.text}>The weather today is...</Text>
+      <Text style={styles.text}>What's the weather today?</Text>
     </LinearGradient>
   );
 };
