@@ -8,25 +8,42 @@ export default ({ location, temperature, condition }) => {
   let icon;
   const currentCondition = condition.toLowerCase();
 
-  if (currentCondition === "clear") {
-    gradientColors = ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"];
-    icon = "weather-sunny";
-  } else if (currentCondition === "clouds") {
-    gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
-    icon = "weather-cloudy";
-  } else if (currentCondition === "rain") {
-    gradientColors = ["#00B9D3", "#57C7DB", "#90D6E2", "#B8E3EA", "#CAECF1"];
-    icon = "weather-rainy";
-  } else if (currentCondition === "haze") {
-    gradientColors = ["purple", "black"];
-    icon = "weather-hazy";
-  }
+  const weatherCondition = {
+    Clear: {
+      icon: "weather-sunny",
+      gradient: ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"],
+    },
+    Clouds: {
+      icon: "weather-cloudy",
+      gradient: ["#D9E5E6", "#BECCDD", "#9DAED2"],
+    },
+  };
+  // if (currentCondition === "clear") {
+  //   gradientColors = ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"];
+  //   icon = "weather-sunny";
+  // } else if (currentCondition === "clouds") {
+  //   gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
+  //   icon = "weather-cloudy";
+  // } else if (currentCondition === "rain") {
+  //   gradientColors = ["#00B9D3", "#57C7DB", "#90D6E2", "#B8E3EA", "#CAECF1"];
+  //   icon = "weather-rainy";
+  // } else if (currentCondition === "haze") {
+  //   gradientColors = ["purple", "black"];
+  //   icon = "weather-hazy";
+  // }
 
   return (
-    <LinearGradient colors={gradientColors} style={styles.container}>
+    <LinearGradient
+      colors={weatherCondition[condition].gradient}
+      style={styles.container}
+    >
       <StatusBar barStyle="light-content" />
       <Text style={styles.condition}>{condition}</Text>
-      <MaterialCommunityIcons name={icon} size={200} color="white" />
+      <MaterialCommunityIcons
+        name={weatherCondition[condition].icon}
+        size={200}
+        color="white"
+      />
       <Text style={styles.temperature}>{temperature}°C</Text>
       <Text style={styles.location}>{location}</Text>
     </LinearGradient>

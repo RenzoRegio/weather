@@ -18,12 +18,12 @@ export default class extends React.Component {
   };
 
   getWeather = async (lat, long) => {
-    // const { data } = await axios.get(
-    //   `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
-    // )
     const { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${API_KEY}&units=metric`
     );
+    // const { data } = await axios.get(
+    //   `https://api.openweathermap.org/data/2.5/weather?q=santiago&appid=${API_KEY}`
+    // );
     console.log(data);
     this.setState({
       isLoading: false,
