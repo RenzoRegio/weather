@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, StatusBar } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -24,6 +24,7 @@ export default ({ location, temperature, condition }) => {
 
   return (
     <LinearGradient colors={gradientColors} style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Text style={styles.condition}>{condition}</Text>
       <MaterialCommunityIcons name={icon} size={200} color="white" />
       <Text style={styles.temperature}>{temperature}°C</Text>

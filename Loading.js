@@ -1,10 +1,11 @@
 import React from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, StatusBar } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default () => {
   return (
     <LinearGradient colors={["#82addb", "#ebb2b1"]} style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Text style={styles.text}>The weather today is...</Text>
     </LinearGradient>
   );
