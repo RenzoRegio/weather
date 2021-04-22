@@ -4,10 +4,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default ({ location, temperature, condition }) => {
-  let gradientColors = [];
-  let icon;
-  const currentCondition = condition.toLowerCase();
-
   const weatherCondition = {
     Clear: {
       icon: "weather-sunny",
@@ -17,30 +13,49 @@ export default ({ location, temperature, condition }) => {
       icon: "weather-cloudy",
       gradient: ["#D9E5E6", "#BECCDD", "#9DAED2"],
     },
+    Rain: {
+      icon: "weather-pouring",
+      gradient: ["#0F2027", "#203A43", "#2C5364"],
+    },
+    Haze: {
+      icon: "weather-hazy",
+      gradient: ["purple", "black"],
+    },
+    Snow: {
+      icon: "snowflake",
+      gradient: ["#83a4d4", "#b6fbff"],
+    },
+    Drizzle: {
+      icon: "weather-partly-rainy",
+      gradient: ["#0F2027", "#203A43", "#2C5364"],
+    },
+    Thunderstorm: {
+      icon: "weather-lightning",
+      gradient: ["#000000", "#F9D423"],
+    },
+    Fog: {
+      icon: "weather-fog",
+      gradient: ["#bdc3c7", "#2c3e50"],
+    },
+    Mist: {
+      icon: "weather-fog",
+      gradient: ["#bdc3c7", "#2c3e50"],
+    },
+    Tornado: {
+      icon: "weather-tornado",
+      gradient: ["#bdc3c7", "#2c3e50"],
+    },
   };
-  // if (currentCondition === "clear") {
-  //   gradientColors = ["#FFE469", "#FECC51", "#FCB033", "#FA961B", "#FA8607"];
-  //   icon = "weather-sunny";
-  // } else if (currentCondition === "clouds") {
-  //   gradientColors = ["#D9E5E6", "#BECCDD", "#9DAED2"];
-  //   icon = "weather-cloudy";
-  // } else if (currentCondition === "rain") {
-  //   gradientColors = ["#00B9D3", "#57C7DB", "#90D6E2", "#B8E3EA", "#CAECF1"];
-  //   icon = "weather-rainy";
-  // } else if (currentCondition === "haze") {
-  //   gradientColors = ["purple", "black"];
-  //   icon = "weather-hazy";
-  // }
 
   return (
     <LinearGradient
-      colors={weatherCondition[condition].gradient}
+      colors={weatherCondition["Thunderstorm"].gradient}
       style={styles.container}
     >
       <StatusBar barStyle="light-content" />
       <Text style={styles.condition}>{condition}</Text>
       <MaterialCommunityIcons
-        name={weatherCondition[condition].icon}
+        name={weatherCondition["Thunderstorm"].icon}
         size={200}
         color="white"
       />
